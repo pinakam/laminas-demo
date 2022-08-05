@@ -1,0 +1,51 @@
+<?php
+$title = 'Add User';
+$this->headTitle($title);
+?>
+    <h1><?= $this->escapeHtml($title) ?></h1>
+<?php
+$id = $form->get('id');
+$id->setAttribute('value', 0);
+
+$name = $form->get('name');
+$name->setAttribute('class', 'form-control');
+$name->setAttribute('placeholder', 'User name');
+
+$email = $form->get('email');
+$email->setAttribute('class', 'form-control');
+$email->setAttribute('placeholder', 'Email');
+
+$mobile = $form->get('mobile');
+$mobile->setAttribute('class', 'form-control');
+$mobile->setAttribute('placeholder', 'Mobile no.');
+
+$submit = $form->get('submit');
+$submit->setAttribute('class', 'btn btn-primary');
+
+$form->setAttribute('action', $this->url('users', ['action' => 'add-user']));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+?>
+    <div class="form-group">
+        <?= $this->formLabel($name) ?>
+        <?= $this->formElement($name) ?>
+        <?= $this->formElementErrors()->render($name, ['class' => 'help-block']) ?>
+    </div>
+
+    <div class="form-group">
+        <?= $this->formLabel($email) ?>
+        <?= $this->formElement($email) ?>
+        <?= $this->formElementErrors()->render($email, ['class' => 'help-block']) ?>
+    </div>
+
+    <div class="form-group">
+        <?= $this->formLabel($mobile) ?>
+        <?= $this->formElement($mobile) ?>
+        <?= $this->formElementErrors()->render($mobile, ['class' => 'help-block']) ?>
+    </div>
+<?php
+echo $this->formHidden($id);
+echo $this->formSubmit($submit);
+echo $this->form()->closeTag();
+?>

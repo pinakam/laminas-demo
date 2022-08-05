@@ -1,0 +1,31 @@
+<?php
+$title = "Users";
+$this->headTitle($title);
+?>
+<h1><?= $this->escapeHtml($title) ?></h1>
+<p><a href="<?= $this->url('users', ['action' => 'add-user']) ?>" class="btn btn-primary">Add New User</a></p>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Mobile</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($users as $user) : ?>
+        <tr>
+            <td><?= $this->escapeHtml($user->name) ?></td>
+            <td><?= $this->escapeHtml($user->email) ?></td>
+            <td><?= $this->escapeHtml($user->mobile) ?></td>
+            <td>
+                <a href="<?= $this->url('users', ['action' => 'edit-user', 'id' => $user->id]) ?>" class="btn btn-info">Edit</a>
+                <a href="<?= $this->url('users', ['action' => 'delete-user', 'id' => $user->id]) ?>"
+                   class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+    </tbody>
+</table>
